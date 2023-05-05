@@ -4,8 +4,8 @@ Project for DevOps on Holberton School
 
 ## Prerequisites
 
-* GoHugo on extended version - v0.84 or above
-* make - v3.81 or above
+* [GoHugo](https://gohugo.io/) on extended version - [v0.84](https://github.com/gohugoio/hugo/releases/tag/v0.84.0) or [above](https://github.com/gohugoio/hugo/releases)
+* [make](https://www.gnu.org/software/make/) - v3.81 or above
 
 ## Lifecycle
 
