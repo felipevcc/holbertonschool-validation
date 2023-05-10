@@ -5,4 +5,3 @@ wget -O hugo_binary.deb https://github.com/gohugoio/hugo/releases/download/v0.11
 dpkg -i hugo_binary.deb
 rm hugo_binary.deb
 make build
-
