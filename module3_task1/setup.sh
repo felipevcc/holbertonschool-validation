@@ -8,7 +8,7 @@ dpkg -i hugo_binary.deb
 rm hugo_binary.deb
 
 # golangci-lint installation
-wget -q -O golangci-lint.deb "https://github.com/golangci/golangci-lint/releases/download/v1.52.2/golangci-lint-1.52.2-linux-386.deb"
+wget -q -O golangci-lint.deb https://github.com/golangci/golangci-lint/releases/download/v1.52.2/golangci-lint-1.52.2-linux-amd64.deb
 dpkg -i golangci-lint.deb
 rm golangci-lint.deb
 
