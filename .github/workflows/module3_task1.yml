@@ -1,0 +1,22 @@
+name: module3_task1
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * *"
+jobs:
+  module3_task1:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Required tools are installed prior to any make target
+      - name: Run setup.sh script
+        run: sudo module3_task1/setup.sh
+
+      - name: Build the application
+        run: cd module3_task1 && make build
+
+      # Check expected behaviour of the app
+      - name: Run tests
+        run: cd module3_task1 && make test
