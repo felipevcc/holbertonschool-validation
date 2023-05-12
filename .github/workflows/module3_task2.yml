@@ -19,9 +19,19 @@ jobs:
       - name: Build the application
         run: cd module3_task2 && make build
 
-      # Check expected behaviour of the app
-      - name: Run tests
-        run: cd module3_task2 && make test
+      # Check expected behaviour of the app (tests)
+      - name: Run unit-tests
+        run: cd module3_task2 && make unit-tests
+
+      - name: Run integration-tests
+        run: cd module3_task2 && make integration-tests
+
+      - name: Run validate
+        run: cd module3_task2 && make validate
+
+      # Shows help message
+      - name: help
+        run: cd module3_task2 && make help
 
       # Check markdowns and golangci-lint
       - name: lint

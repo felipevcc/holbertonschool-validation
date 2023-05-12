@@ -46,5 +46,5 @@ package: ## Creates a zip file that contains the needed files to deply the websi
 	@make build
 	@zip awesome-website.zip awesome-api ./dist/
 
-help: ## Shows this help message
+help: ## Shows help message
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
