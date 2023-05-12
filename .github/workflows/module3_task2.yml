@@ -14,22 +14,22 @@ jobs:
 
       # Required tools are installed prior to any make target
       - name: Run setup.sh script
-        run: sudo module3_task1/setup.sh
+        run: sudo module3_task2/setup.sh
 
       - name: Build the application
-        run: cd module3_task1 && make build
+        run: cd module3_task2 && make build
 
       # Check expected behaviour of the app
       - name: Run tests
-        run: cd module3_task1 && make test
+        run: cd module3_task2 && make test
 
       # Check markdowns and golangci-lint
       - name: lint
-        run: cd module3_task1 && make lint
+        run: cd module3_task2 && make lint
 
       # Zip file that contains the needed files to deply the website
       - name: package
-        run: cd module3_task1 && make package
+        run: cd module3_task2 && make package
 
       - uses: actions/upload-artifact@v3
         with:
