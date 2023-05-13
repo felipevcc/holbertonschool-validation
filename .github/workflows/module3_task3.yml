@@ -20,7 +20,7 @@ jobs:
       - name: Build the application
         run: cd module3_task3 && make build
 
-      # Check expected behaviour of the app (tests)
+      # Checks expected behaviour of the app (tests)
       - name: Run unit-tests
         run: cd module3_task3 && make unit-tests
 
