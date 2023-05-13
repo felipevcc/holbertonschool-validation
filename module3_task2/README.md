@@ -38,3 +38,7 @@ or [above](https://github.com/gohugoio/hugo/releases)
 The [`github-workflow.yml`](./github-workflow.yml) file has a symbolic link to
 the corresponding file which is located in the
 [`workflows`](../.github/workflows/) folder.
+
+## Build Workflow
+
+Does static linting and build both website and API binary.
