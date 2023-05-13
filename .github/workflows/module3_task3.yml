@@ -1,0 +1,60 @@
+name: module3_task3
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "1.0.0"
+  schedule:
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  module3_task3:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Required tools are installed prior to any make target
+      - name: Run setup.sh script
+        run: sudo module3_task3/setup.sh
+
+      - name: Build the application
+        run: cd module3_task3 && make build
+
+      # Check expected behaviour of the app (tests)
+      - name: Run unit-tests
+        run: cd module3_task3 && make unit-tests
+
+      - name: Run integration-tests
+        run: cd module3_task3 && make integration-tests
+
+      - name: Run validate
+        run: cd module3_task3 && make validate
+
+      # Shows help message
+      - name: help
+        run: cd module3_task3 && make help
+
+      # Check markdowns and golangci-lint
+      - name: lint
+        run: cd module3_task3 && make lint
+
+      # Zip file that contains the needed files to deply the website
+      - name: package
+        run: cd module3_task3 && make package
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: awesome-website
+          path: ./module3_task3/awesome-website.zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/1.0.0')
+        with:
+          files: ./module3_tast3/awesome-website.zip
+          body: ./module3_tast3/DEPLOY.md
