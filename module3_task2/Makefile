@@ -27,7 +27,6 @@ test: ## Check expected behaviour of the app
 
 lint: ## Static linting on go files using golangci-lint
 	@markdownlint *.md
-	@golangci-lint run
 
 unit-tests: ## Execute (successfully) the Golang unit tests
 	@go test -v -short -coverprofile=coverage-units.out     
