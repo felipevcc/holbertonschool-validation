@@ -26,7 +26,7 @@ test: ## Check expected behaviour of the app
 	@make validate
 
 lint: ## Static linting on go files using golangci-lint
-	@markdownlint *.md
+	@markdownlint README.md DEPLOY.md
 	@golangci-lint run
 
 unit-tests: ## Execute (successfully) the Golang unit tests
@@ -43,7 +43,7 @@ validate: ## should validate the file ./dist/index.html by using the command lin
 	@-./w3c_validator.py ./dist/index.html
 
 package: ## Creates a zip file that contains the needed files to deply the website
-	@make build
+	@hugo
 	@zip awesome-website.zip awesome-api ./dist/
 
 help: ## Shows help message
