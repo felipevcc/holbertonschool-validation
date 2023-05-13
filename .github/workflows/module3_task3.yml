@@ -3,13 +3,8 @@ on:
   push:
     branches:
       - main
-    tags:
-      - "1.0.0"
   schedule:
     - cron: "0 0 * * *"
-
-permissions:
-  contents: write
 
 jobs:
   build-artifact:
@@ -53,7 +48,10 @@ jobs:
           path: ./module3_task3/awesome-website.zip
 
   build-release:
+    permissions:
+      contents: write
     needs: build-artifact
+    if: startsWith(github.ref, 'refs/tags/1.0.0')
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
@@ -64,7 +62,6 @@ jobs:
           name: awesome-website
       - name: Release
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/1.0.0')
         with:
           files: awesome-website.zip
           body_path: ./module3_task3/DEPLOY.md
