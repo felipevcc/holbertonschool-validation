@@ -26,7 +26,7 @@ test: ## Check expected behaviour of the app
 	@make validate
 
 lint: ## Static linting on go files using golangci-lint
-	@markdownlint README.md DEPLOY.md
+	@markdownlint *.md
 	@golangci-lint run
 
 unit-tests: ## Execute (successfully) the Golang unit tests
