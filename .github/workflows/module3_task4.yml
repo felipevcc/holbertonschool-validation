@@ -1,0 +1,68 @@
+name: module3_task4
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build-artifact:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      # Required tools are installed prior to any make target
+      - name: Run setup.sh script
+        run: sudo module3_task4/setup.sh
+
+      - name: Build the application
+        run: cd module3_task4 && make build
+
+      # Checks expected behaviour of the app (tests)
+      - name: Run unit-tests
+        run: cd module3_task4 && make unit-tests
+
+      - name: Run integration-tests
+        run: cd module3_task4 && make integration-tests
+
+      - name: Run validate
+        run: cd module3_task4 && make validate
+
+      # Shows help message
+      - name: help
+        run: cd module3_task4 && make help
+
+      # Check markdowns and golangci-lint
+      - name: lint
+        run: cd module3_task4 && make lint
+
+      # Zip file that contains the needed files to deply the website
+      - name: package
+        run: cd module3_task4 && make package
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: awesome-website
+          path: ./module3_task4/awesome-website.zip
+
+  build-release:
+    permissions:
+      contents: write
+    needs: build-artifact
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Download awesome-website zip file
+        uses: actions/download-artifact@v3
+        with:
+          name: awesome-website
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            awesome-website.zip
+            ./module3_task4/DEPLOY.md
+          body_path: ./module3_task4/DEPLOY.md
