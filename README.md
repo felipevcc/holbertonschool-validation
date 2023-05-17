@@ -1,6 +1,6 @@
 # Post Website
 
-Project for DevOps on Holberton School
+Project for DevOps on Holberton School.
 
 ## Prerequisites
 
